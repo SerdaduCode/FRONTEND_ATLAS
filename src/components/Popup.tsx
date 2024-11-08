@@ -56,7 +56,7 @@ const Popup = ({ setIsOpen, area }) => {
                   />
                 </div>
                 <a
-                  href={`/map/${area.id}`}
+                  href={`/area/${area.id}`}
                   className="text-white bg-black rounded-full"
                 >
                   <RiArrowRightCircleFill

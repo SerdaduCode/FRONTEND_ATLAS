@@ -43,8 +43,10 @@ export const kota = [
     lat: -6.914744,
     lon: 107.60981,
     nickname: 'Kota Kembang',
+    // image:
+    //   'https://cdn-assetd.kompas.id/9D-E_Du8a4wsbIeRlvEXRkeEkuk=/1024x683/https%3A%2F%2Fkompas.id%2Fwp-content%2Fuploads%2F2019%2F09%2F20190930SEM3-BAGIAN-ATAP-GEDUNG-SATE_1569844378.jpg',
     image:
-      'https://cdn-assetd.kompas.id/9D-E_Du8a4wsbIeRlvEXRkeEkuk=/1024x683/https%3A%2F%2Fkompas.id%2Fwp-content%2Fuploads%2F2019%2F09%2F20190930SEM3-BAGIAN-ATAP-GEDUNG-SATE_1569844378.jpg',
+      'https://asset.kompas.com/crops/fXl7uewsJWP3O3cGure7FoZWwCE=/3x0:744x494/1200x800/data/photo/2020/11/20/5fb727a581578.png',
   },
   {
     id: 2,

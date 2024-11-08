@@ -1,6 +1,6 @@
-import MapChart from './MapChart';
+import MapChart from '@/components/MapChart';
 
-const Map = () => {
+const Home = () => {
   return (
     <>
       <div className="h-screen">
@@ -32,4 +32,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default Home;
