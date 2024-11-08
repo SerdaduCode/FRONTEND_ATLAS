@@ -1,6 +1,7 @@
 import { kota } from '@/data/data';
 import { useRoute } from 'preact-iso';
 import { useEffect, useState } from 'preact/hooks';
+import { RiCloseLargeLine } from 'react-icons/ri';
 
 const Area = () => {
   const [area, setArea] = useState(null);
@@ -29,11 +30,19 @@ const Area = () => {
           backgroundSize: 'cover',
         }}
       ></div>
+
+      <a
+        href="/"
+        className="z-20 absolute right-0 p-8 text-white hover:text-yellow-500 transition"
+      >
+        <RiCloseLargeLine size={40} />
+      </a>
+
       <div className="z-10 bg-[rgba(0,0,0,0.2)] flex-1">
-        <div className="grid grid-cols-2 h-full">
+        <div className="grid md:grid-cols-2 h-full">
           <div></div>
           <div className="text-white">
-            <div className="mt-72 flex flex-col items-center">
+            <div className="md:mt-72 flex flex-col items-center">
               <div className="p-4">
                 <h1 className="text-6xl tracking-wider text-center">
                   {area?.name}
