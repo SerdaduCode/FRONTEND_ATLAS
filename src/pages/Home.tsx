@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import MapChart from '@/components/MapChart';
 
 const Home = () => {
@@ -21,11 +22,7 @@ const Home = () => {
               </section>
             </div>
           </div>
-          <footer className="w-full h-10 bg-slate-800 flex justify-center items-center">
-            <div>
-              <h1 className="text-white">Footer</h1>
-            </div>
-          </footer>
+          <Footer />
         </div>
       </div>
     </>

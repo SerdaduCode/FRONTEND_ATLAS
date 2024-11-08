@@ -1,7 +1,8 @@
-import { kota } from '@/data/data';
 import { useRoute } from 'preact-iso';
 import { useEffect, useState } from 'preact/hooks';
 import { RiCloseLargeLine } from 'react-icons/ri';
+import Footer from '@/components/Footer';
+import { kota } from '@/data/data';
 
 const Area = () => {
   const [area, setArea] = useState(null);
@@ -62,11 +63,7 @@ const Area = () => {
           </div>
         </div>
       </div>
-      <footer className="z-10 w-full h-10 bg-slate-800 flex justify-center items-center">
-        <div>
-          <h1 className="text-white">Footer</h1>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
