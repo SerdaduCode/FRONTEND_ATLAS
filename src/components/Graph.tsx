@@ -9,12 +9,7 @@ if (typeof Highcharts === 'object') {
   // HighchartsExporting(Highcharts);
 }
 
-const Graph = ({
-  setIsOpen,
-  setName,
-  setNickname,
-  setImage,
-}) => {
+const Graph = ({ setIsOpen, setArea }) => {
   const map = useRef(null);
   const [mapOptions, setMapOptions] = useState({
     chart: {
@@ -55,9 +50,14 @@ const Graph = ({
               // alert(`${e.point.name}`);
               console.debug(e.point);
               setIsOpen(true);
-              setName(e.point.name);
-              setNickname(e.point.nickname);
-              setImage(e.point.image);
+              setArea({
+                id: e.point.id,
+                name: e.point.name,
+                lat: e.point.lat,
+                lon: e.point.lon,
+                nickname: e.point.nickname,
+                image: e.point.image,
+              });
             },
           },
         },
@@ -66,7 +66,6 @@ const Graph = ({
 
     series: [
       {
-        // Use the gb-all map with no data as a basemap
         name: 'Indonesia',
         borderColor: '#A0A0A0',
         nullColor: 'rgba(200, 200, 200, 0.3)',

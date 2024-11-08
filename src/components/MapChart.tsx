@@ -1,14 +1,18 @@
 import { useState } from 'preact/hooks';
 import Graph from './Graph';
-import { topology, kota, provinsi } from '@/data/data';
 import Popup from './Popup';
 // import Preview from './Preview';
 
 const MapChart = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [name, setName] = useState(''); // name for city or province
-  const [nickname, setNickname] = useState('');
-  const [image, setImage] = useState(null);
+  const [area, setArea] = useState({
+    id: null,
+    name: '',
+    lat: null,
+    lon: null,
+    nickname: '',
+    image: '',
+  });
 
   // const mapChartOption = () => {
   //   {
@@ -140,19 +144,9 @@ const MapChart = () => {
   return (
     <div className="w-full h-full flex justify-center items-center">
       {isOpen && (
-        <Popup
-          setIsOpen={setIsOpen}
-          name={name}
-          nickname={nickname}
-          image={image}
-        />
+        <Popup setIsOpen={setIsOpen} area={area} />
       )}
-      <Graph
-        setIsOpen={setIsOpen}
-        setName={setName}
-        setNickname={setNickname}
-        setImage={setImage}
-      />
+      <Graph setIsOpen={setIsOpen} setArea={setArea} />
     </div>
   );
 };

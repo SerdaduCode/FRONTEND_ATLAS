@@ -1,34 +1,40 @@
-import MapChart from './components/MapChart';
+import {
+  LocationProvider,
+  Route,
+  Router,
+  useRoute,
+} from 'preact-iso';
+import Map from './components/Map';
 import './app.css';
+import { kota } from './data/data';
+import { useEffect, useState } from 'preact/hooks';
+
+function Detail() {
+  const { params } = useRoute();
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const dataKota = kota.find(
+      (k) => k.id === Number(params.id),
+    );
+    setData(dataKota);
+  }, []);
+
+  return (
+    <>
+      <h2>Detail - {params.id}</h2>
+      <h2>Name - {data?.name}</h2>
+    </>
+  );
+}
 
 export function App() {
   return (
-    <>
-      <div className="h-screen">
-        <div className="h-full flex flex-col justify-between items-center">
-          <div className="w-full h-14 bg-slate-800 flex items-center justify-between shadow-md">
-            <h1 className="text-xl text-neutral-50 font-bold pl-8">
-              Atlas
-            </h1>
-            <h1 className="text-xl text-neutral-50 font-bold pr-8">
-              About
-            </h1>
-          </div>
-          <div className="w-full flex flex-col justify-center items-center gap-10">
-            <div className="w-full flex flex-col justify-center items-center">
-              <section className="w-full">
-                <MapChart />
-                {/* <div>Map</div> */}
-              </section>
-            </div>
-          </div>
-          <footer className="w-full h-10 bg-slate-800 flex justify-center items-center">
-            <div>
-              <h1 className="text-white">Footer</h1>
-            </div>
-          </footer>
-        </div>
-      </div>
-    </>
+    <LocationProvider>
+      <Router>
+        <Route path="/" component={Map} />
+        <Route path="/map/:id" component={Detail} />
+      </Router>
+    </LocationProvider>
   );
 }
