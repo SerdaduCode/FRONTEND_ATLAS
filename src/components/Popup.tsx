@@ -1,6 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import {
+  RiCloseCircleFill,
+  RiArrowRightCircleFill,
+} from 'react-icons/ri';
 
-const Popup = ({ setIsOpen, name, nickname, image }) => {
+const Popup = ({ setIsOpen, area }) => {
   return (
     <div className="flex flex-col items-center justify-center absolute m-auto inset-0 z-10 bg-[rgba(0,0,0,0.1)]">
       <AnimatePresence>
@@ -18,29 +22,48 @@ const Popup = ({ setIsOpen, name, nickname, image }) => {
             transition: { duration: 0.5 },
           }}
         >
-          <div className="bg-[rgba(0,0,0,1)]">
-            <div className="flex items-center gap-4 border-yellow-600 border-2">
+          <div className="bg-[rgba(0,0,0,1)] relative">
+            <div className="flex items-center gap-4 border-yellow-400 border-2">
               <figure>
                 <img
-                  src={image}
+                  src={area.image}
                   alt="gambar"
-                  className="w-[200px] h-28 object-cover border-yellow-600 border-2"
+                  className="w-[200px] h-28 object-cover border-yellow-400 border-2"
                 />
               </figure>
 
-              <div className="w-full flex items-center justify-between">
+              <div className="flex items-center justify-between gap-6 mr-12">
                 <div>
-                  <h1 className="text-white font-medium text-xl">
-                    {name}
+                  <h1 className="text-white font-medium text-3xl tracking-wide">
+                    {area.name}
                   </h1>
-                  <p className="text-white">{nickname}</p>
+                  <p className="text-white">
+                    {area.nickname}
+                  </p>
                 </div>
-                <button
+                {/* <button
                   onClick={() => setIsOpen(false)}
                   className="bg-white mr-4"
                 >
                   close
-                </button>
+                </button> */}
+                <div className="absolute top-[-12px] right-[-12px] bg-black rounded-full">
+                  <RiCloseCircleFill
+                    size={30}
+                    color="#FFD700"
+                    onClick={() => setIsOpen(false)}
+                    className="cursor-pointer"
+                  />
+                </div>
+                <a
+                  href={`/map/${area.id}`}
+                  className="text-white bg-black rounded-full"
+                >
+                  <RiArrowRightCircleFill
+                    size={34}
+                    color="#FFD700"
+                  />
+                </a>
               </div>
             </div>
           </div>
