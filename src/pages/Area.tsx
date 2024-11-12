@@ -2,18 +2,20 @@ import { useRoute } from 'preact-iso';
 import { useEffect, useState } from 'preact/hooks';
 import { RiCloseLargeLine } from 'react-icons/ri';
 import Footer from '@/components/Footer';
-import { kota } from '@/data/data';
+import { kota, provinsiData, data } from '@/data/data';
+import { Provinsi } from '@/components/MapChart';
 
 const Area = () => {
-  const [area, setArea] = useState(null);
+  const [dataProvinsi, setDataProvinsi] =
+    useState<Provinsi | null>(null);
   const { params } = useRoute();
 
   useEffect(() => {
-    const data = kota.find(
+    const result = data.provinces.find(
       (k) => k.id === Number(params.id),
     );
 
-    setArea(data);
+    setDataProvinsi(result);
   }, []);
 
   return (
@@ -25,7 +27,7 @@ const Area = () => {
           top: 0,
           left: 0,
           right: 0,
-          backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.9)), url('${area?.image}')`,
+          backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.9)), url('${dataProvinsi?.logoUrl}')`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
@@ -46,7 +48,7 @@ const Area = () => {
             <div className="md:mt-72 flex flex-col items-center">
               <div className="p-4">
                 <h1 className="text-6xl tracking-wider text-center">
-                  {area?.name}
+                  {dataProvinsi?.name}
                 </h1>
                 <hr className="m-7" />
                 <p>

@@ -3,7 +3,7 @@ import Highcharts from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 // import HighchartsExporting from 'highcharts/modules/exporting';
 // import irelandMap from '@highcharts/map-collection/countries/ie/ie-all.topo.json';
-import { topology, kota, provinsi } from '@/data/data';
+import { topology, provinsi, data } from '@/data/data';
 
 if (typeof Highcharts === 'object') {
   // HighchartsExporting(Highcharts);
@@ -17,7 +17,7 @@ const Graph = ({ setIsOpen, setArea }) => {
       // height: (9 / 16) * 100 + '%',
       // height: null,
       height: 600,
-      // backgroundColor: '#a6dff2'
+      // backgroundColor: '#a6dff2',
       backgroundColor: '#fff',
     },
 
@@ -49,15 +49,21 @@ const Graph = ({ setIsOpen, setArea }) => {
             click: function (e) {
               // alert(`${e.point.name}`);
               console.debug(e.point);
-              setIsOpen(true);
-              setArea({
-                id: e.point.id,
-                name: e.point.name,
-                lat: e.point.lat,
-                lon: e.point.lon,
-                nickname: e.point.nickname,
-                image: e.point.image,
-              });
+              console.debug(e.point._i);
+
+              const provinsi = data.provinces.find(
+                (key) => key.id === e.point._i,
+              );
+
+              console.debug(provinsi);
+
+              if (provinsi) {
+                setArea(provinsi);
+
+                setIsOpen(true);
+
+                return;
+              }
             },
           },
         },
@@ -67,75 +73,84 @@ const Graph = ({ setIsOpen, setArea }) => {
     series: [
       {
         name: 'Indonesia',
-        borderColor: '#A0A0A0',
+        borderColor: '#000',
         nullColor: 'rgba(200, 200, 200, 0.3)',
+        backgroundColor: '#E1D89F',
       },
+
       {
         name: 'Separators',
         type: 'mapline',
         nullColor: '#707070',
         enableMouseTracking: false,
         accessibility: {
-          enabled: true,
+          enabled: false,
         },
       },
 
       // KOTA
-      {
-        type: 'mappoint',
-        name: 'Kota',
-        color: '#000',
-        data: kota,
-        dataLabels: {
-          enabled: true,
-          padding: 8,
-          style: {
-            fontSize: '0.7rem',
-          },
-          align: 'right',
-          verticalAlign: 'middle',
-        },
-        showInLegend: false,
-        tooltip: {
-          // headerFormat: '',
-          pointFormat: '',
-        },
-        cursor: 'pointer',
-        zIndex: 2,
-        enableMouseTracking: true,
-      },
-
-      // PROVINSI
       // {
-      //   data: provinsi,
-      //   name: 'Provinsi',
-      //   color: 'rgb(246, 241, 241)',
-      //   colorAxis: {
-      //     min: 0,
-      //     max: 1,
-      //     stops: [
-      //       [0, '#FFFFFF'], // Start color (white)
-      //       [1, '#FFFFFF'], // End color (white)
-      //     ],
-      //   },
-      //   states: {
-      //     hover: {
-      //       color: '#BADA55',
-      //     },
-      //     select: {
-      //       color: '#a4edba',
-      //       borderColor: 'black',
-      //       dashStyle: 'dot',
-      //     },
-      //   },
+      //   type: 'mappoint',
+      //   name: 'Kota',
+      //   color: '#000',
+      //   data: kota,
       //   dataLabels: {
-      //     enabled: false,
-      //     format: '{point.name}',
+      //     enabled: true,
+      //     padding: 8,
+      //     style: {
+      //       fontSize: '0.7rem',
+      //     },
+      //     align: 'right',
+      //     verticalAlign: 'middle',
       //   },
       //   showInLegend: false,
-      //   allowPointSelect: false, // 'true' states select will active
+      //   tooltip: {
+      //     // headerFormat: '',
+      //     pointFormat: '',
+      //   },
       //   cursor: 'pointer',
+      //   zIndex: 2,
+      //   enableMouseTracking: true,
       // },
+
+      // PROVINSI
+      {
+        data: provinsi,
+        name: 'Provinsi',
+        color: '#77B070',
+        borderColor: '#fff',
+        colorAxis: {
+          min: 0,
+          max: 1,
+          stops: [
+            [0, '#FFFFFF'], // Start color (white)
+            [1, '#FFFFFF'], // End color (white)
+          ],
+        },
+        states: {
+          hover: {
+            color: '#5C9954',
+          },
+          select: {
+            color: '#a4edba',
+            borderColor: 'black',
+            dashStyle: 'dot',
+          },
+        },
+        dataLabels: {
+          enabled: false,
+          format: '{point.name}',
+          style: {
+            textOverflow: 'ellipsis',
+            fontSize: '0.8rem',
+            textOutline: 'none',
+            border: 'solid white',
+          },
+        },
+        showInLegend: false,
+        allowPointSelect: false, // 'true' states select will active
+        cursor: 'pointer',
+      },
     ],
   });
 
