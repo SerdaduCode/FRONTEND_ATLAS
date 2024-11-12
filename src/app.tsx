@@ -12,7 +12,8 @@ export function App() {
     <LocationProvider>
       <Router>
         <Route path="/" component={Home} />
-        <Route path="/area/:id" component={Area} />
+        {/* <Route path="/kota/:id" component={Area} /> */}
+        <Route path="/provinsi/:id" component={Area} />
       </Router>
     </LocationProvider>
   );
