@@ -16,9 +16,9 @@ const Graph = ({ setIsOpen, setArea }) => {
       map: topology,
       // height: (9 / 16) * 100 + '%',
       // height: null,
-      height: 600,
-      // backgroundColor: '#a6dff2',
-      backgroundColor: '#fff',
+      height: 800,
+      backgroundColor: '#a6dff2',
+      // backgroundColor: '#fff',
     },
 
     title: {
